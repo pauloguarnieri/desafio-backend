@@ -1,0 +1,15 @@
+from django.db import models
+import uuid
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    id = models.UUIDField(defalt=uuid.uuid4, primary_key=True, editable=False)
+    username = models.CharField(max_length=20, unique=True)
+    email = models.EmailField(unique=True)
+    password = models.CharField()
+    is_player = models.BooleanField(default=True, blank=True, null=True)
+    total_score = models.PositiveIntegerField()
+    created_at = models.DateTimeField()
+    updated_ad = models.DateTimeField(auto_now=True)
+
+    REQUIRED_FIELDS: list[str] = ['email', 'first_name', 'last_name']
