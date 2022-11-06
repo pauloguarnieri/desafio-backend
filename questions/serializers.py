@@ -1,8 +1,8 @@
 from .models import Question
 from rest_framework import serializers
 from answers.serializers import AnswerCreationSerializer
-from categorys.serializers import CategorySerializer
-from categorys.models import Category
+from categories.serializers import CategorySerializer
+from categories.models import Category
 from answers.models import Answer
 import ipdb
 
@@ -10,7 +10,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Question
-        fields = '__all__'
+        fields = ['id', 'question', 'category', 'answers']
         read_only_fields = ['id']
     
     category =  CategorySerializer()
