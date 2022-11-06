@@ -5,7 +5,7 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
 
-        fields = ['id', 'is_superuser', 'first_name', 'last_name', 'username', 'is_player']
+        fields = ['id', 'is_superuser', 'username', 'is_player']
         read_only_fields = ['total_score', 'created_at']
         extra_kwargs = {'password': {'write_only': True}}
 
