@@ -7,9 +7,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=20, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=20)
-    is_player = models.BooleanField(default=True, blank=True, null=True)
-    total_score = models.PositiveIntegerField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now=True)
-    updated_ad = models.DateTimeField(auto_now=True)
+    is_player = models.BooleanField(null=True)
+    total_score = models.PositiveIntegerField(blank=True, null=True, default=0)
 
     REQUIRED_FIELDS: list[str] = ['email', 'first_name', 'last_name']
