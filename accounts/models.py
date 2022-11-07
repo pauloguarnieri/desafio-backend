@@ -6,7 +6,6 @@ class User(AbstractUser):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     username = models.CharField(max_length=20, unique=True)
     email = models.EmailField(unique=True)
-    # password = models.CharField(max_length=20)
     is_player = models.BooleanField(null=True)
     total_score = models.PositiveIntegerField(blank=True, null=True, default=0)
 
