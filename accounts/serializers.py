@@ -7,7 +7,10 @@ class AccountSerializer(serializers.ModelSerializer):
 
         fields = ['id', 'username', 'email', 'is_player', 'is_superuser', 'password']
         read_only_fields = ['total_score']
-        extra_kwargs = {'password': {'write_only': True}, 'is_player':{'default': True}}
+        extra_kwargs = {
+            'password': {'write_only': True}, 
+            'is_player':{'default': True}
+            }
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -19,7 +22,11 @@ class AccountAdminSerializer(serializers.ModelSerializer):
 
         fields = ['id', 'username', 'email', 'is_player', 'is_superuser', 'password']
         read_only_fields = ['total_score']
-        extra_kwargs = {'password': {'write_only': True}, 'is_player':{'default':False}, 'is_superuser':{'default': True}}
+        extra_kwargs = {
+            'password': {'write_only': True}, 
+            'is_player':{'default':False}, 
+            'is_superuser':{'default': True}
+            }
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)

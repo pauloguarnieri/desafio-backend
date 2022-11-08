@@ -17,13 +17,15 @@ class QuestionSerializer(serializers.ModelSerializer):
     answers =  AnswerCreationSerializer(many=True)
     
     def create(self, validated_data):
-        # ipdb.set_trace()
+        #separando categoria e respostas
         category_poped = validated_data.pop('category')
         answers_poped = validated_data.pop('answers')
 
+        #salvando questão e categoria
         validated_category, _ = Category.objects.get_or_create(**category_poped)
         question, _ = Question.objects.get_or_create(**validated_data, category=validated_category)
 
+        #salvando respostas
         for item in answers_poped:
             validated_answer, _ = Answer.objects.get_or_create(**item, question=question)
             question.answers.add(validated_answer)
