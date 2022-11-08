@@ -4,4 +4,8 @@ class Question(models.Model):
 
     question = models.CharField(max_length=255)
     
-    category = models.ForeignKey('categorys.Category', related_name='questions', on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(
+        'categories.Category', 
+        related_name='questions', 
+        on_delete=models.DO_NOTHING
+        )
