@@ -6,6 +6,8 @@ from .permissions import IsPlayerPermission
 from rest_framework.authentication import TokenAuthentication
 from categories.models import Category
 from utils.helpers import get_random_questions
+from rest_framework import status
+
 
 class QuizView(APIView):
 
@@ -20,6 +22,12 @@ class QuizView(APIView):
 
         #filtrando as questões da categoria selecionada
         questions = Question.objects.filter(category=categoria)
+
+        # if len(questions) < 10:
+        #     return Response(
+        #         {"message": "this category doesn't have enough questions for a new quiz"},
+        #         status=status.HTTP_400_BAD_REQUEST
+        #         )
 
         #chamando função que seleciona 10 questões aleatorias dentre as existentes
         #questions_range = len(questions)
